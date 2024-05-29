@@ -1,3 +1,4 @@
+
 # RDC - Deauther
 
 ## Progetto di Francesco Maura
@@ -27,7 +28,6 @@ Il protocollo IEEE 802.11 è lo standard per le reti wireless (Wi-Fi). Gestisce 
 
 #### Tipo di Pacchetto Inviato: Pacchetti di Deautenticazione
 
-
 I pacchetti di deautenticazione sono un tipo di frame di gestione nel protocollo 802.11. Questi pacchetti sono utilizzati per terminare la connessione di un dispositivo con un punto di accesso. I pacchetti di deautenticazione contengono le seguenti informazioni principali:
 
 * **Frame Control:** Identifica il tipo di frame (in questo caso, un frame di gestione).
@@ -40,7 +40,6 @@ I pacchetti di deautenticazione sono un tipo di frame di gestione nel protocollo
 
 ## Processo
 
-
 * **Scansione delle Reti:** Il deauther Wi-Fi esegue una scansione per individuare le reti Wi-Fi disponibili (SSID) e i dispositivi connessi (client).
 * **Selezione dei Target:** L'utente seleziona i dispositivi o i punti di accesso da deautenticare.
 * **Invio dei Pacchetti di Deautenticazione:** Il deauther invia una serie di pacchetti di deautenticazione al dispositivo di destinazione o al punto di accesso. Questi pacchetti possono essere inviati a:
@@ -48,7 +47,6 @@ I pacchetti di deautenticazione sono un tipo di frame di gestione nel protocollo
   * **Tutti i dispositivi:** Utilizzando l'indirizzo di broadcast, tutti i dispositivi connessi alla rete possono essere deautenticati.
 
 ## Vulnerabilità Sfruttata
-
 
 Il deauther Wi-Fi sfrutta una vulnerabilità intrinseca nel protocollo 802.11: la mancanza di autenticazione nei pacchetti di deautenticazione. Questo significa che chiunque, anche senza autorizzazione, può inviare pacchetti di deautenticazione e far sì che i dispositivi si disconnettano dalla rete. Le principali caratteristiche della vulnerabilità sono:
 
@@ -152,3 +150,28 @@ L'ho creato per due motivi:
 
 1. Individuare l'attaccante (per una questione legale, si può settare invisibile da riga di comando seriale)
 2. Collegarsi al dispositivo per implementare un futuro WebServer
+
+## Installazione e supporto
+
+La scheda al momento supportata è il Node MCU con ESP8266 a bordo. È possibile acquistarla [qui](www.amazon.it/AZDelivery-NodeMCU-esp8266-esp-12e-gratuito/dp/B0754HWZSQ)
+
+1. Installare la [IDE di Arduino](https://www.arduino.cc/en/main/software)
+2. Clona la repository o scarica il file ZIP
+3. Apri il file `esp8266_deauther.ino`
+4. In Arduino vai su `Flie > Preferences` e aggiungi questo URL al gestore di schede aggiuntive
+   `https://raw.githubusercontent.com/SpacehuhnTech/arduino/main/package_spacehuhn_index.json`
+5. Vai su `tools > board > boards manager`, cerca `deauther` e installa `deauther esp8266 boards`
+6. Seleziona la scheda in `tools > board  Deauther ESP8266 Boards`
+7. Queste sono le impostazioni consigliate
+
+   ```
+   Board: Generic ESP8266 Module  
+   Flash Mode: DOUT
+   Flash Frequency: 80 MHZ
+   CPU Frequency: 160 MHz
+   Flash Size: 1M (256K SPIFFS)
+   Reset Method: nodemcu
+   Upload Speed: 115200
+   Port: <com port of your device>
+   ```
+8. Esegui il fash sulla scheda inviando lo sketch
